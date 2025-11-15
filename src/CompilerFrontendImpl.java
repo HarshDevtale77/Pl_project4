@@ -22,9 +22,9 @@ public class CompilerFrontendImpl extends CompilerFrontend {
     protected void init_lexer() {
        LexerImpl mylex = new LexerImpl();
 
-        // NUM: [0-9]*\.[0-9]+  (must have '.' and >=1 digit after it)
+        // NUM: [0-9]*\.[0-9]+ 
         Automaton a_num = new AutomatonImpl();
-        // states: 0 = start, 1 = seen digit(s) before dot (loop on digits), 2 = seen dot, 3 = seen at least one digit after dot (accept, loop on digits)
+        // states: 0 = start, 1
         a_num.addState(0, true, false);
         a_num.addState(1, false, false);
         a_num.addState(2, false, false);
@@ -81,7 +81,7 @@ public class CompilerFrontendImpl extends CompilerFrontend {
         a_rparen.addState(1, false, true);
         a_rparen.addTransition(0, ')', 1);
 
-        // WHITE_SPACE: one or more of ' ', '\n', '\r', '\t'
+        // WHITE_SPACE:
         Automaton a_ws = new AutomatonImpl();
         a_ws.addState(0, true, false);
         a_ws.addState(1, false, true);
